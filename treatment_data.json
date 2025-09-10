@@ -1,0 +1,158 @@
+{
+  "Apple Black rot": [
+    "Remove infected leaves and fruit promptly to prevent spread.",
+    "Apply fungicides such as chlorothalonil or copper-based sprays regularly."
+  ],
+  "Apple Cedar apple rust": [
+    "Spray sulfur fungicides in early spring before symptoms appear.",
+    "Remove nearby juniper plants that serve as alternate hosts."
+  ],
+  "Apple healthy": [
+    "No treatment needed; maintain proper watering and nutrition.",
+    "Regularly inspect trees for early signs of disease."
+  ],
+  "Background without leaves": [
+    "No treatment applicable.",
+    "Keep the area clean to prevent disease buildup."
+  ],
+  "Blueberry healthy": [
+    "Ensure proper watering and balanced fertilization.",
+    "Regularly monitor for pests and diseases."
+  ],
+  "Cherry healthy": [
+    "No treatment needed; maintain proper care.",
+    "Inspect plants regularly for any signs of disease."
+  ],
+  "Cherry Powdery mildew": [
+    "Apply fungicides containing sulfur or potassium bicarbonate.",
+    "Improve air circulation by pruning crowded branches."
+  ],
+  "Corn Cercospora leaf spot Gray leaf spot": [
+    "Use resistant hybrid corn varieties.",
+    "Apply fungicides like azoxystrobin if infection becomes severe."
+  ],
+  "Corn Common rust": [
+    "Plant resistant corn varieties.",
+    "Apply fungicides when rust symptoms appear."
+  ],
+  "Corn healthy": [
+    "Practice crop rotation to maintain soil health.",
+    "Keep fields free of crop debris to reduce disease pressure."
+  ],
+  "Corn Northern Leaf Blight": [
+    "Use resistant hybrids to minimize disease impact.",
+    "Rotate crops to break the disease cycle."
+  ],
+  "Grape Black rot": [
+    "Prune and destroy infected plant material.",
+    "Use fungicides during the growing season as preventive treatment."
+  ],
+  "Grape Esca (Black Measles)": [
+    "Remove and destroy infected wood during dormancy.",
+    "Maintain canopy management for better airflow."
+  ],
+  "Grape healthy": [
+    "Regular monitoring is important.",
+    "Maintain good vineyard sanitation practices."
+  ],
+  "Grape Leaf blight (Isariopsis Leaf Spot)": [
+    "Apply copper-based fungicides to infected leaves.",
+    "Remove and destroy severely affected leaves."
+  ],
+  "Orange Haunglongbing (Citrus greening)": [
+    "Remove infected trees promptly to prevent spread.",
+    "Control psyllid insect vectors using insecticides."
+  ],
+  "Peach Bacterial spot": [
+    "Apply copper bactericides early in the season.",
+    "Use resistant cultivars if available."
+  ],
+  "Peach healthy": [
+    "Maintain good orchard sanitation and care.",
+    "Inspect trees regularly for early signs of disease."
+  ],
+  "Pepper bell Bacterial spot": [
+    "Use copper bactericides to reduce infection.",
+    "Practice crop rotation to limit pathogen buildup."
+  ],
+  "Pepper bell healthy": [
+    "Maintain optimal growing conditions for peppers.",
+    "Monitor plants regularly for pests and diseases."
+  ],
+  "Potato Early blight": [
+    "Apply fungicides like chlorothalonil at first sign of disease.",
+    "Remove and destroy infected plant debris promptly."
+  ],
+  "Potato healthy": [
+    "Practice crop rotation with non-host crops.",
+    "Maintain proper irrigation and fertilization."
+  ],
+  "Potato Late blight": [
+    "Use fungicides such as mancozeb or chlorothalonil.",
+    "Remove infected plants immediately to reduce spread."
+  ],
+  "Raspberry healthy": [
+    "Provide regular care and adequate nutrition.",
+    "Inspect plants frequently to detect problems early."
+  ],
+  "Soybean healthy": [
+    "Maintain proper soil fertility and moisture.",
+    "Practice crop rotation and pest management."
+  ],
+  "Squash Powdery mildew": [
+    "Apply sulfur or potassium bicarbonate sprays.",
+    "Ensure good air circulation around plants."
+  ],
+  "Strawberry healthy": [
+    "Keep monitoring for pests and diseases regularly.",
+    "Maintain proper watering and nutrition."
+  ],
+  "Strawberry Leaf scorch": [
+    "Remove infected leaves immediately.",
+    "Apply appropriate fungicides and avoid overhead watering."
+  ],
+  "Tomato Bacterial spot": [
+    "Use copper-based bactericides for control.",
+    "Plant resistant tomato varieties if available."
+  ],
+  "Tomato Early blight": [
+    "Apply fungicides and remove infected debris.",
+    "Rotate crops to reduce disease pressure."
+  ],
+  "Tomato healthy": [
+    "Maintain regular monitoring and care.",
+    "Provide balanced fertilization and irrigation."
+  ],
+  "Tomato Late blight": [
+    "Apply fungicides such as chlorothalonil promptly.",
+    "Remove infected plants immediately."
+  ],
+  "Tomato Leaf Mold": [
+    "Improve air circulation around plants.",
+    "Apply copper or chlorothalonil-based fungicides."
+  ],
+  "Tomato Septoria leaf spot": [
+    "Remove infected leaves and apply fungicides regularly.",
+    "Practice crop rotation and sanitation."
+  ],
+  "Tomato Spider mites Two-spotted spider mite": [
+    "Use miticides recommended for spider mites.",
+    "Introduce predatory mites for biological control."
+  ],
+  "Tomato Target Spot": [
+    "Apply fungicides and remove infected debris.",
+    "Ensure adequate spacing between plants for airflow."
+  ],
+  "Tomato Tomato mosaic virus": [
+    "Use resistant tomato varieties.",
+    "Practice strict sanitation and remove infected plants."
+  ],
+  "Tomato Tomato Yellow Leaf Curl Virus": [
+    "Control whitefly vectors with insecticides.",
+    "Remove infected plants to prevent spread."
+  ],
+  "Apple Apple scab": [
+    "Apply fungicides in early spring before infection.",
+    "Remove fallen leaves to reduce disease inoculum."
+  ]
+}
