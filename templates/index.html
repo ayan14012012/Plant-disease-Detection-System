@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="{{ 'hi' if lang == 'hi' else 'en' }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plant Disease Detector & Weather Assistant</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #d9faff, #90e0ef);
+      overflow-x: hidden;
+    }
+
+    /* Animated background shapes */
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: float 20s infinite;
+    }
+    .shape1 { width: 200px; height: 200px; background: #00c9a7; top: 10%; left: 5%; animation-delay: 0s; }
+    .shape2 { width: 300px; height: 300px; background: #ffb703; top: 60%; left: 70%; animation-delay: 5s; }
+    .shape3 { width: 150px; height: 150px; background: #8ecae6; top: 30%; left: 80%; animation-delay: 2s; }
+
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-50px) translateX(30px); }
+      100% { transform: translateY(0) translateX(0); }
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 2.5rem;
+      color: #023047;
+      font-weight: bold;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      animation: fadeDown 1s ease-in-out;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    form, .panel {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 650px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      animation: fadeUp 1s ease-in-out;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    form label { display:block; margin-top:10px; font-weight:bold; color:#023047; }
+    form input, form select, form button {
+      margin-top:10px; padding:12px; width:100%; border-radius:10px; border:1px solid #00c9a7;
+      font-size:1rem; transition: all 0.3s ease;
+    }
+    form input:focus, form select:focus { outline:none; border-color:#ffb703; box-shadow:0 0 10px rgba(255,183,3,0.5); }
+    form button {
+      background:#00c9a7; color:white; border:none; cursor:pointer; font-size:1.1rem; font-weight:bold;
+    }
+    form button:hover { background:#005f73; transform:scale(1.05); }
+
+    .panel h2 { margin-top:0; color:#023047; }
+    table { width:100%; border-spacing:0 10px; }
+    th, td { padding:10px; text-align:center; background:white; border-radius:10px; }
+    th { background:#00c9a7; color:white; }
+
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #00c9a7;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 30px auto;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    #chatbotToggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #00c9a7, #90e0ef);
+      color:white;
+      font-size:1.5rem;
+      cursor:pointer;
+      box-shadow:0 5px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    #chatbotToggle:hover { transform: scale(1.1) rotate(10deg); }
+
+    #chatbotPanel {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 380px;
+      height: 520px;
+      background:white;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      display:none;
+      flex-direction:column;
+      overflow:hidden;
+      animation: slideUp 0.5s ease;
+    }
+    @keyframes slideUp {
+      from { opacity:0; transform: translateY(100px); }
+      to { opacity:1; transform: translateY(0); }
+    }
+
+    #chatbotPanel header {
+      background: linear-gradient(135deg, #00c9a7, #90e0ef);
+      color:white;
+      padding:10px;
+      text-align:center;
+      font-weight:bold;
+    }
+
+    #chatMessages { flex:1; overflow-y:auto; padding:10px; display:flex; flex-direction:column; gap:10px; background:#f8f9fa; }
+    #chatMessages div { padding:12px; border-radius:12px; max-width:75%; animation: fadeUp 0.5s ease; }
+    .user { align-self:flex-end; background:#00c9a7; color:white; }
+    .bot { align-self:flex-start; background:#caf0f8; color:#023047; }
+
+    .input-area { display:flex; padding:8px; gap:5px; border-top:1px solid #ccc; background:white; }
+    .input-area input { flex:1; padding:10px; border-radius:10px; border:1px solid #ccc; }
+    .input-area button { background:#00c9a7; border:none; color:white; border-radius:10px; padding:0 15px; cursor:pointer; transition:0.3s; }
+    .input-area button:hover { background:#005f73; }
+  </style>
+</head>
+<body>
+
+<!-- Floating shapes -->
+<div class="floating-shape shape1"></div>
+<div class="floating-shape shape2"></div>
+<div class="floating-shape shape3"></div>
+
+<header>🌿 Plant Disease Detector</header>
+
+<form method="POST" enctype="multipart/form-data" id="mainForm">
+  <label for="langSelect">Select Language</label>
+  <select id="langSelect" name="lang" onchange="document.getElementById('mainForm').submit();">
+    <option value="en">English</option>
+    <option value="hi">हिन्दी</option>
+  </select>
+
+  <label for="fileInput">Upload Plant Image</label>
+  <input id="fileInput" type="file" name="file" accept="image/*" required />
+
+  <button type="submit">Predict Disease</button>
+</form>
+
+{% if loading %}<div class="loader"></div>{% endif %}
+
+{% if prediction %}
+<div class="panel">
+  <h2>Prediction Result</h2>
+  {% if image_path %}<img src="{{ url_for('static', filename=image_path) }}" style="max-width:100%; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.2);" />{% endif %}
+  <p><strong>Disease:</strong> {{ prediction }}</p>
+  <p><strong>Treatment:</strong> {{ treatment|safe }}</p>
+</div>
+{% endif %}
+
+{% if weather and not weather.get('error') %}
+<div class="panel">
+  <h2>☁ Weather in {{ weather.current.city }}</h2>
+  <p><strong>{{ weather.current.description }}</strong> — {{ weather.current.temperature }}°C</p>
+  <p>💧 Humidity: {{ weather.current.humidity }}%</p>
+  <h3>Rain Probability</h3>
+  {% for day in weather.forecast %}
+  <div style="background:#e0fbfc;padding:10px;border-radius:10px;margin:10px 0;box-shadow:0 3px 10px rgba(0,0,0,0.1);">
+    <strong>{{ day.date }}</strong><br>
+    {{ day.description }}<br>
+    🌧 {{ day.rain_probability }}%
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="panel">
+  <h2>🛒 Live Crop Market Prices</h2>
+  {% if market_prices %}
+  <table>
+    <thead>
+      <tr><th>Crop</th><th>Market</th><th>Price (₹/Quintal)</th></tr>
+    </thead>
+    <tbody>
+      {% for item in market_prices %}
+      <tr><td>{{ item.crop }}</td><td>{{ item.market }}</td><td>{{ item.price }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p>No market price data available.</p>{% endif %}
+</div>
+
+<button id="chatbotToggle">💬</button>
+<div id="chatbotPanel">
+  <header>AI Farming Assistant</header>
+  <div id="chatMessages"></div>
+  <div class="input-area">
+    <input id="chatInput" placeholder="Type your question..." />
+    <button id="micButton">🎤</button>
+    <button id="sendButton">Send</button>
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById("chatbotToggle");
+  const panel = document.getElementById("chatbotPanel");
+  const input = document.getElementById("chatInput");
+  const sendBtn = document.getElementById("sendButton");
+  const micBtn = document.getElementById("micButton");
+  const messages = document.getElementById("chatMessages");
+
+  toggle.addEventListener("click", () => {
+    panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+    panel.style.flexDirection = "column";
+    if (panel.style.display === "flex") input.focus();
+  });
+
+  function appendMessage(text, fromUser = true) {
+    const msg = document.createElement("div");
+    msg.textContent = text;
+    msg.className = fromUser ? "user" : "bot";
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  sendBtn.addEventListener("click", async () => {
+    const text = input.value.trim();
+    if (!text) return;
+    appendMessage(text, true);
+    input.value = "";
+    appendMessage("Typing...", false);
+    try {
+      const res = await fetch("/chatbot", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: text, lang: "{{ lang }}" }) });
+      const data = await res.json();
+      messages.lastChild.remove();
+      appendMessage(data.reply, false);
+    } catch (err) {
+      messages.lastChild.remove();
+      appendMessage("Error connecting to assistant.", false);
+    }
+  });
+
+  micBtn.addEventListener("click", () => {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = "{{ 'hi-IN' if lang == 'hi' else 'en-US' }}";
+    recognition.start();
+    recognition.onresult = (e) => { input.value = e.results[0][0].transcript; };
+  });
+</script>
+
+</body>
+</html>
